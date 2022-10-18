@@ -24,5 +24,33 @@ namespace bensaLaskuriMAIN
         {
             InitializeComponent();
         }
+
+        private void laskeNappi_Click(object sender, RoutedEventArgs e)
+        {
+            int matka = 0;
+            double kulutus = 0;
+            double hinta = 0;
+            try
+            {
+                matka = Convert.ToInt32(matkaBoksi.Text);
+                kulutus = Convert.ToDouble(kulutusBoksi.Text);
+                hinta = Convert.ToDouble(hintaBoksi.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Voi ei! Syötit väärän arvon, yritä uudelleen!", "VIRHE", MessageBoxButton.OK, MessageBoxImage.Error);
+                matkaBoksi.Clear();
+                kulutusBoksi.Clear();
+                hintaBoksi.Clear();
+            }
+
+            double bensanHinta = Math.Round(matka / 100 *kulutus * hinta, 2);
+            if (bensanHinta == 0)
+            {
+                bensanHintaBoksi.Text = "";
+            }
+            else 
+            bensanHintaBoksi.Text = Convert.ToString(bensanHinta);
+        }
     }
 }
