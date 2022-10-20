@@ -23,10 +23,13 @@ namespace bensaLaskuriMAIN
         public MainWindow()
         {
             InitializeComponent();
+            
         }
+        
 
         private void laskeNappi_Click(object sender, RoutedEventArgs e)
         {
+            List<int> bensanHinnat = new List<int>();
             int matka = 0;
             double kulutus = 0;
             double hinta = 0;
@@ -49,8 +52,13 @@ namespace bensaLaskuriMAIN
             {
                 bensanHintaBoksi.Text = "";
             }
-            else 
+            else
+            /*bensanHinnat.Add(Convert.ToInt32(bensanHinta));
+            historiaMenu.ItemsSource = bensanHinnat;
+            */
+
             bensanHintaBoksi.Text = Convert.ToString(bensanHinta);
+            
         }
     }
 }
