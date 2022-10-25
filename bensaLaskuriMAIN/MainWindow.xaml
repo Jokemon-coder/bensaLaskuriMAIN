@@ -20,7 +20,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
        
@@ -36,10 +36,16 @@
         <TextBox x:Name="hintaBoksi" Grid.Column="3" Grid.Row="2" Margin="5" Padding="3" Width="150" Height="auto" FontSize="20" TextAlignment="Left"/>
         <TextBlock Grid.Column="3" Grid.Row="3" Margin="5" TextAlignment="Center" Text="Polttoaineen hinta" FontSize="18"/>
 
-        <Button x:Name="laskeNappi" Grid.ColumnSpan="1" Grid.Column="2" Grid.Row="4" Margin="15" Width="auto" Height="50" FontSize="25" Content="LASKE" Click="laskeNappi_Click"/>
+        
+        <Button x:Name="laskeNappi" Grid.ColumnSpan="1" Grid.Column="2" Grid.Row="4" Margin="10" Width="auto" Height="auto" VerticalAlignment="Top" FontSize="25" Content="LASKE" Click="laskeNappi_Click"/>
+        <Button x:Name="clearNappi" Grid.ColumnSpan="1" Grid.Column="2" Grid.Row="4" Margin="10" Width="auto" Height="auto" VerticalAlignment="Bottom" FontSize="25" Content="PUHDISTA" Click="clearNappi_Click" />
+        
+         
+            
         <TextBlock x:Name="bensanHintaBoksi" Grid.Column="1" Grid.Row="4" Margin="10" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" TextAlignment="Justify" FontSize="20"/>
 
-        <ComboBox x:Name="historiaMenu" Grid.ColumnSpan="1" Grid.Column="3" Grid.Row="4" Margin="15" Width="auto" Height="50" FontSize="25" IsEditable="True" Text="HISTORIA" VerticalContentAlignment="Center"/>
+        <ComboBox x:Name="historiaMenu" Grid.ColumnSpan="1" Grid.Column="3" Grid.Row="4" Margin="15" Width="auto" Height="50" FontSize="25" VerticalContentAlignment="Center" Visibility="Hidden" IsEditable="True"/>
+
 
 
         </Grid>

@@ -24,12 +24,15 @@ namespace bensaLaskuriMAIN
         {
             InitializeComponent();
             
+            
         }
         
 
         private void laskeNappi_Click(object sender, RoutedEventArgs e)
         {
-            List<int> bensanHinnat = new List<int>();
+            
+            List<double> bensanHinnat = new List<double>();
+            
             int matka = 0;
             double kulutus = 0;
             double hinta = 0;
@@ -45,20 +48,50 @@ namespace bensaLaskuriMAIN
                 matkaBoksi.Clear();
                 kulutusBoksi.Clear();
                 hintaBoksi.Clear();
+                
             }
 
             double bensanHinta = Math.Round(matka / 100 *kulutus * hinta, 2);
             if (bensanHinta == 0)
             {
                 bensanHintaBoksi.Text = "";
+                historiaMenu.Visibility = Visibility.Hidden;
             }
             else
-            /*bensanHinnat.Add(Convert.ToInt32(bensanHinta));
-            historiaMenu.ItemsSource = bensanHinnat;
-            */
+            
 
             bensanHintaBoksi.Text = Convert.ToString(bensanHinta);
+
+           
             
+            bensanHinnat.Add(Convert.ToDouble(bensanHinta));
+            historiaMenu.SelectedItem = bensanHinta;
+            historiaMenu.SelectedIndex = 0;
+
+            foreach (double s in bensanHinnat)
+            {
+                historiaMenu.Items.Add(s);
+            }
+            
+            
+           
+           
+
+
+            if (bensanHinta != 0)
+            {
+                historiaMenu.Visibility = Visibility.Visible;
+            }
+            
+            
+        }
+
+        private void clearNappi_Click(object sender, RoutedEventArgs e)
+        {
+            matkaBoksi.Text = "";
+            kulutusBoksi.Text = "";
+            hintaBoksi.Text = "";
+            bensanHintaBoksi.Text = "";
         }
     }
 }
