@@ -34,13 +34,14 @@ namespace bensaLaskuriMAIN
             List<double> bensanHinnat = new List<double>();
             
             int matka = 0;
-            double kulutus = 0;
-            double hinta = 0;
+            decimal kulutus = 0;
+            decimal hinta = 0;
+            decimal bensanHinta;
             try
             {
                 matka = Convert.ToInt32(matkaBoksi.Text);
-                kulutus = Convert.ToDouble(kulutusBoksi.Text);
-                hinta = Convert.ToDouble(hintaBoksi.Text);
+                kulutus = Convert.ToDecimal(kulutusBoksi.Text);
+                hinta = Convert.ToDecimal(hintaBoksi.Text);
             }
             catch
             {
@@ -51,39 +52,40 @@ namespace bensaLaskuriMAIN
                 
             }
 
-            double bensanHinta = Math.Round(matka / 100 *kulutus * hinta, 2);
+            bensanHinta = Math.Round(matka / 100 * kulutus * hinta, 2);
             if (bensanHinta == 0)
             {
-                bensanHintaBoksi.Text = "";
-                historiaMenu.Visibility = Visibility.Hidden;
+
+                MessageBox.Show("VOI EI");
+                bensanHintaBoksi.Text = $"{matka}KM {kulutus}L/100KM \n{hinta}€/L \n{bensanHinta}€";
+                /*bensanHintaBoksi.Text = "";
+                historiaMenu.Visibility = Visibility.Hidden;*/
+
             }
             else
-            
-
-            bensanHintaBoksi.Text = Convert.ToString(bensanHinta);
-
-           
-            
-            bensanHinnat.Add(Convert.ToDouble(bensanHinta));
-            historiaMenu.SelectedItem = bensanHinta;
-            historiaMenu.SelectedIndex = 0;
-
-            foreach (double s in bensanHinnat)
             {
-                historiaMenu.Items.Add(s);
-            }
-            
-            
-           
-           
 
+                //bensanHintaBoksi.Text = Convert.ToString(bensanHinta);
+                bensanHintaBoksi.Text = $"{matka}KM {kulutus}L/100KM \n{hinta}€/L \n{bensanHinta}€";
 
-            if (bensanHinta != 0)
-            {
+                bensanHinnat.Add(Convert.ToDouble(bensanHinta));
+                historiaMenu.SelectedItem = bensanHinta;
+                historiaMenu.SelectedIndex = 0;
                 historiaMenu.Visibility = Visibility.Visible;
+
+                matkaBoksi.Text = "";
+                kulutusBoksi.Text = "";
+                hintaBoksi.Text = "";
+
+                foreach (double s in bensanHinnat)
+                {
+                    historiaMenu.Items.Add(s);
+                }
+
             }
-            
-            
+
+
+
         }
 
         private void clearNappi_Click(object sender, RoutedEventArgs e)
