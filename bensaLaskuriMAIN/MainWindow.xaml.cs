@@ -34,6 +34,7 @@ namespace bensaLaskuriMAIN
             List<double> bensanHinnat = new List<double>(); //Lista, johon kaikki laskut menee ja tallentuu ohjelman päällä ollessa
             
             //Asetetaan ohjelman alussa arvot nolliksi, jotka myöhemmin muutetaan syötettyjen arvojen perusteella
+            //"decimal satanen = 100" asettaa laskukaavaan tarvittavan numeron, jolla ajettu matka ensiksi jaetaan. Aiheutti muuten ongelmia, jolloin alle 100km matka pyöristi lopputuloksen nollaan
             int matka = 0;
             decimal satanen = 100;
             decimal kulutus = 0;
@@ -55,7 +56,7 @@ namespace bensaLaskuriMAIN
             }
 
             bensanHinta = Math.Round(matka / satanen * kulutus * hinta, 3); //Laskukaava polttoaineen hinnalle
-            if (bensanHinta == 0)
+            if (bensanHinta == 0) //Jos tulos on nolla, virhe popup ja kenttien nollaus
             {
 
                 MessageBox.Show("VOI EI");
@@ -63,7 +64,7 @@ namespace bensaLaskuriMAIN
                 kulutusBoksi.Text = "";
                 hintaBoksi.Text = "";
             }
-            else
+            else //Jos ei ole 0, ohjelma etenee laskun kanssa ja antaa tulokset plus lisää tuloksen aikaisempien laskujen historiaan
             {
 
                 //bensanHintaBoksi.Text = Convert.ToString(bensanHinta);
@@ -89,7 +90,7 @@ namespace bensaLaskuriMAIN
 
         }
 
-        private void clearNappi_Click(object sender, RoutedEventArgs e)
+        private void clearNappi_Click(object sender, RoutedEventArgs e) //Puhdistaa kentät
         {
             matkaBoksi.Text = "";
             kulutusBoksi.Text = "";
