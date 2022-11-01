@@ -31,19 +31,21 @@ namespace bensaLaskuriMAIN
         private void laskeNappi_Click(object sender, RoutedEventArgs e)
         {
             
-            List<double> bensanHinnat = new List<double>();
+            List<double> bensanHinnat = new List<double>(); //Lista, johon kaikki laskut menee ja tallentuu ohjelman päällä ollessa
             
+            //Asetetaan ohjelman alussa arvot nolliksi, jotka myöhemmin muutetaan syötettyjen arvojen perusteella
             int matka = 0;
+            decimal satanen = 100;
             decimal kulutus = 0;
             decimal hinta = 0;
             decimal bensanHinta;
-            try
+            try //Tarkistetaan että annetut arvot ovat numeroita
             {
                 matka = Convert.ToInt32(matkaBoksi.Text);
                 kulutus = Convert.ToDecimal(kulutusBoksi.Text);
                 hinta = Convert.ToDecimal(hintaBoksi.Text);
             }
-            catch
+            catch //Jos ei ole oikea arvo, popup viesti ja puhdistetaan kentät
             {
                 MessageBox.Show("Voi ei! Syötit väärän arvon, yritä uudelleen!", "VIRHE", MessageBoxButton.OK, MessageBoxImage.Error);
                 matkaBoksi.Clear();
@@ -52,21 +54,20 @@ namespace bensaLaskuriMAIN
                 
             }
 
-            bensanHinta = Math.Round(matka / 100 * kulutus * hinta, 2);
+            bensanHinta = Math.Round(matka / satanen * kulutus * hinta, 3); //Laskukaava polttoaineen hinnalle
             if (bensanHinta == 0)
             {
 
                 MessageBox.Show("VOI EI");
-                bensanHintaBoksi.Text = $"{matka}KM {kulutus}L/100KM \n{hinta}€/L \n{bensanHinta}€";
-                /*bensanHintaBoksi.Text = "";
-                historiaMenu.Visibility = Visibility.Hidden;*/
-
+                matkaBoksi.Text = "";
+                kulutusBoksi.Text = "";
+                hintaBoksi.Text = "";
             }
             else
             {
 
                 //bensanHintaBoksi.Text = Convert.ToString(bensanHinta);
-                bensanHintaBoksi.Text = $"{matka}KM {kulutus}L/100KM \n{hinta}€/L \n{bensanHinta}€";
+                bensanHintaBoksi.Text = $"{matka}KM ({kulutus}L/100KM) \n{hinta}€/L \n{bensanHinta}€";
 
                 bensanHinnat.Add(Convert.ToDouble(bensanHinta));
                 historiaMenu.SelectedItem = bensanHinta;
