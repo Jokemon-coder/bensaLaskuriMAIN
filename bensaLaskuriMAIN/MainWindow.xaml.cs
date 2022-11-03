@@ -74,7 +74,7 @@ namespace bensaLaskuriMAIN
                 historiaMenu.SelectedItem = bensanHinta;
                 historiaMenu.SelectedIndex = 0;
                 historiaMenu.Visibility = Visibility.Visible;
-
+                
                 matkaBoksi.Text = "";
                 kulutusBoksi.Text = "";
                 hintaBoksi.Text = "";
@@ -88,6 +88,8 @@ namespace bensaLaskuriMAIN
 
 
 
+
+
         }
 
         private void clearNappi_Click(object sender, RoutedEventArgs e) //Puhdistaa kentät
@@ -96,6 +98,7 @@ namespace bensaLaskuriMAIN
             kulutusBoksi.Text = "";
             hintaBoksi.Text = "";
             bensanHintaBoksi.Text = "";
+            historiaMenu.Text = "";
         }
     }
 }
